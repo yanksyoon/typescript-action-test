@@ -19,13 +19,17 @@ const entryPoints = [
 const configs = entryPoints.map((entry) => ({
   input: `src/${entry}.ts`,
   output: {
-    esModule: true,
     file: `dist/${entry}/index.js`,
-    format: 'es',
+    format: 'cjs',
     sourcemap: true
   },
   plugins: [
-    typescript(),
+    typescript({
+      compilerOptions: {
+        module: 'ESNext',
+        moduleResolution: 'Bundler'
+      }
+    }),
     json(),
     nodeResolve({ preferBuiltins: true }),
     commonjs()
