@@ -55,7 +55,7 @@ jobs:
 
       - name: Test Local Action
         id: test-action
-        uses: ./
+        uses: ./internal/build
         with:
           milliseconds: 2000
 

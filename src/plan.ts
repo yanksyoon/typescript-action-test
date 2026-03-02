@@ -38,7 +38,7 @@ async function planBuildCharm(
     await glob.create(path.join(workingDir, '**', 'charmcraft.yaml'))
   ).glob()
   const charmcraftFiles = allCharmcraftFiles.filter(
-    file =>
+    (file) =>
       !path.normalize(path.relative(workingDir, file)).startsWith('tests/')
   )
   return charmcraftFiles.map((charmcraftFile: string) => {
@@ -136,7 +136,7 @@ async function planBuildFileResource(
     await glob.create(path.join(workingDir, '**', 'charmcraft.yaml'))
   ).glob()
   const charmcraftFiles = allCharmcraftFiles.filter(
-    file =>
+    (file) =>
       !path.normalize(path.relative(workingDir, file)).startsWith('tests/')
   )
   return charmcraftFiles.flatMap((charmcraftFile: string) => {

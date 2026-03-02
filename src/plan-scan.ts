@@ -22,7 +22,7 @@ export async function run(): Promise<void> {
         core.info(`Skipping ${build.type} build`)
         continue
       }
-      fs.readdirSync('.').forEach(file =>
+      fs.readdirSync('.').forEach((file) =>
         fs.rmSync(file, { force: true, recursive: true })
       )
       await artifact.downloadArtifact(
@@ -34,7 +34,7 @@ export async function run(): Promise<void> {
       if ('files' in manifest) {
         const files = manifest.files as string[]
         scans = scans.concat(
-          files.map(f => ({
+          files.map((f) => ({
             artifact: build.output,
             file: f,
             image: ''
@@ -44,7 +44,7 @@ export async function run(): Promise<void> {
       if ('images' in manifest) {
         const images = manifest.images as string[]
         scans = scans.concat(
-          images.map(i => ({
+          images.map((i) => ({
             artifact: '',
             file: `${i.replaceAll(/[/:]/g, '-')}.tar`,
             image: i

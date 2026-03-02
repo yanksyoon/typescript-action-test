@@ -1,0 +1,30 @@
+name: Publish Charms
+description: Publish charms.
+author: is-devops-team@canonical.com
+inputs:
+  charmhub-token:
+    description: charmhub-token.
+    required: true
+  github-token:
+    description: github-token.
+    required: true
+  plan:
+    description: operator-workflows plan.
+    required: true
+  run-id:
+    description: workflow un ID.
+    required: true
+  working-directory:
+    description: working-directory.
+    default: '.'
+  resource-mapping:
+    description: resource-mapping.
+    default: '{}'
+outputs:
+  charms:
+    description: charms.
+  charm-directory:
+    description: charm-directory.
+runs:
+  using: node20
+  main: ../../dist/publish/index.js

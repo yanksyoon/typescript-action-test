@@ -75,7 +75,7 @@ class GetPlan {
             repo: github.context.repo.repo,
             run_id: runId
         }))
-            .filter(a => a.name.endsWith(`${this.identifier ? '__' : ''}${this.identifier}__plan`))
+            .filter((a) => a.name.endsWith(`${this.identifier ? '__' : ''}${this.identifier}__plan`))
             .sort((a, b) => {
             if (a.name < b.name) {
                 return 1;

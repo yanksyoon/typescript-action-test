@@ -12,7 +12,7 @@ import * as exec from '@actions/exec'
 import * as github from '@actions/github'
 
 function sleep(ms: number) {
-  return new Promise(resolve => setTimeout(resolve, ms))
+  return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
 async function waitBuild(githubToken: string, jobId: number): Promise<void> {
@@ -30,11 +30,11 @@ async function waitBuild(githubToken: string, jobId: number): Promise<void> {
         per_page: 100
       }
     )
-    const thisJob = jobs.find(job => job.id === jobId)!
+    const thisJob = jobs.find((job) => job.id === jobId)!
     const jobPrefix = thisJob.name.split(' / ')[0]
     core.info(`looking for build jobs under ${jobPrefix}`)
     const targetJobs = jobs.filter(
-      j =>
+      (j) =>
         (j.name || '').startsWith(`${jobPrefix}`) &&
         (j.name || '').includes(' / Build')
     )

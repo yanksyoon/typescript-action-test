@@ -47,8 +47,8 @@ class Publish {
         if (resources === undefined) {
             return [[], []];
         }
-        const images = Object.keys(resources).filter(k => resources[k].type === 'oci-image' && !resources[k]['upstream-source']);
-        const files = Object.keys(resources).filter(k => resources[k].type === 'file');
+        const images = Object.keys(resources).filter((k) => resources[k].type === 'oci-image' && !resources[k]['upstream-source']);
+        const files = Object.keys(resources).filter((k) => resources[k].type === 'file');
         return [images, files];
     }
     async getFiles(plan, runId) {
@@ -173,7 +173,7 @@ class Publish {
             }
         }
         if (upload.size != resources.length) {
-            const missing = resources.filter(r => !upload.has(r));
+            const missing = resources.filter((r) => !upload.has(r));
             throw new Error(`can't find required resources: ${missing}`);
         }
         return upload;
@@ -184,13 +184,13 @@ class Publish {
         if (fs_1.default.existsSync(path_1.default.join(charmDir, 'charm', 'charmcraft.yaml'))) {
             charmDir = path_1.default.join(charmDir, 'charm');
         }
-        const charms = plan.build.filter(b => b.type === 'charm' &&
+        const charms = plan.build.filter((b) => b.type === 'charm' &&
             (0, utils_1.normalizePath)(b.source_directory) === (0, utils_1.normalizePath)(charmDir));
         if (charms.length === 0) {
             throw new Error('no charm to upload');
         }
         if (charms.length > 1) {
-            throw new Error(`more than one charm to upload: ${charms.map(c => c.name)}`);
+            throw new Error(`more than one charm to upload: ${charms.map((c) => c.name)}`);
         }
         const charm = charms[0];
         const tmp = (0, utils_1.mkdtemp)();
@@ -216,7 +216,7 @@ class Publish {
         return {
             name: manifest.name,
             dir: charm.source_directory,
-            files: manifest.files.map(f => path_1.default.join(tmp, f))
+            files: manifest.files.map((f) => path_1.default.join(tmp, f))
         };
     }
     async run() {

@@ -11,7 +11,7 @@ const os_1 = tslib_1.__importDefault(require("os"));
 const exec = tslib_1.__importStar(require("@actions/exec"));
 const github = tslib_1.__importStar(require("@actions/github"));
 function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise((resolve) => setTimeout(resolve, ms));
 }
 async function waitBuild(githubToken, jobId) {
     const octokit = github.getOctokit(githubToken);
@@ -25,10 +25,10 @@ async function waitBuild(githubToken, jobId) {
             attempt_number: github.context.runAttempt,
             per_page: 100
         });
-        const thisJob = jobs.find(job => job.id === jobId);
+        const thisJob = jobs.find((job) => job.id === jobId);
         const jobPrefix = thisJob.name.split(' / ')[0];
         core.info(`looking for build jobs under ${jobPrefix}`);
-        const targetJobs = jobs.filter(j => (j.name || '').startsWith(`${jobPrefix}`) &&
+        const targetJobs = jobs.filter((j) => (j.name || '').startsWith(`${jobPrefix}`) &&
             (j.name || '').includes(' / Build'));
         if (targetJobs.length === 0) {
             core.info('no build jobs');

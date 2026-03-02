@@ -16,12 +16,12 @@ async function run() {
                 core.info(`Skipping ${build.type} build`);
                 continue;
             }
-            fs_1.default.readdirSync('.').forEach(file => fs_1.default.rmSync(file, { force: true, recursive: true }));
+            fs_1.default.readdirSync('.').forEach((file) => fs_1.default.rmSync(file, { force: true, recursive: true }));
             await artifact.downloadArtifact((await artifact.getArtifact(build.output)).artifact.id);
             const manifest = JSON.parse(fs_1.default.readFileSync('manifest.json', { encoding: 'utf-8' }));
             if ('files' in manifest) {
                 const files = manifest.files;
-                scans = scans.concat(files.map(f => ({
+                scans = scans.concat(files.map((f) => ({
                     artifact: build.output,
                     file: f,
                     image: ''
@@ -29,7 +29,7 @@ async function run() {
             }
             if ('images' in manifest) {
                 const images = manifest.images;
-                scans = scans.concat(images.map(i => ({
+                scans = scans.concat(images.map((i) => ({
                     artifact: '',
                     file: `${i.replaceAll(/[/:]/g, '-')}.tar`,
                     image: i

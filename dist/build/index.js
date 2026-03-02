@@ -53,7 +53,10 @@ async function buildCharm(params) {
     const charmFiles = await (await glob.create(path_1.default.join(params.plan.source_directory, '*.charm'))).glob();
     const artifact = new artifact_1.DefaultArtifactClient();
     const manifestFile = path_1.default.join(params.plan.source_directory, 'manifest.json');
-    fs_1.default.writeFileSync(manifestFile, JSON.stringify({ name: params.plan.name, files: charmFiles.map(f => path_1.default.basename(f)) }, null, 2));
+    fs_1.default.writeFileSync(manifestFile, JSON.stringify({
+        name: params.plan.name,
+        files: charmFiles.map((f) => path_1.default.basename(f))
+    }, null, 2));
     await artifact.uploadArtifact(params.plan.output, [...charmFiles, manifestFile], params.plan.source_directory);
 }
 async function buildFileResource(plan) {
@@ -68,7 +71,7 @@ async function buildFileResource(plan) {
     const resourceFiles = await (await glob.create(path_1.default.join(plan.source_directory, plan.build_target))).glob();
     const artifact = new artifact_1.DefaultArtifactClient();
     const manifestFile = path_1.default.join(plan.source_directory, 'manifest.json');
-    fs_1.default.writeFileSync(manifestFile, JSON.stringify({ name: plan.name, files: resourceFiles.map(f => path_1.default.basename(f)) }, null, 2));
+    fs_1.default.writeFileSync(manifestFile, JSON.stringify({ name: plan.name, files: resourceFiles.map((f) => path_1.default.basename(f)) }, null, 2));
     await artifact.uploadArtifact(plan.output, [...resourceFiles, manifestFile], plan.source_directory);
 }
 async function buildDockerImage({ plan, user, token }) {
@@ -173,7 +176,7 @@ async function buildRock({ plan, rockcraftChannel, rockcraftRepository, rockcraf
     if (plan.output_type === 'file') {
         fs_1.default.writeFileSync(manifestFile, JSON.stringify({
             name: plan.name,
-            files: rocks.map(f => path_1.default.basename(f))
+            files: rocks.map((f) => path_1.default.basename(f))
         }, null, 2));
         await artifact.uploadArtifact(plan.output, [...rocks, manifestFile], plan.source_directory);
     }

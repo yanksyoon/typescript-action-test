@@ -7,9 +7,7 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
-    "lib": [
-      "ES2022"
-    ],
+    "lib": ["ES2022"],
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "newLine": "lf",
@@ -23,16 +21,8 @@
     "strictNullChecks": true,
     "target": "ES2022",
     "rootDir": "./src",
-    "baseUrl": "./",
+    "baseUrl": "./"
   },
-  "exclude": [
-    "__fixtures__",
-    "__tests__",
-    "coverage",
-    "dist",
-    "node_modules"
-  ],
-  "include": [
-    "src"
-  ]
+  "exclude": ["__fixtures__", "__tests__", "coverage", "dist", "node_modules"],
+  "include": ["src"]
 }

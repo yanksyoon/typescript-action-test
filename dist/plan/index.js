@@ -27,7 +27,7 @@ function fromFork() {
 }
 async function planBuildCharm(workingDir, id) {
     const allCharmcraftFiles = await (await glob.create(path.join(workingDir, '**', 'charmcraft.yaml'))).glob();
-    const charmcraftFiles = allCharmcraftFiles.filter(file => !path.normalize(path.relative(workingDir, file)).startsWith('tests/'));
+    const charmcraftFiles = allCharmcraftFiles.filter((file) => !path.normalize(path.relative(workingDir, file)).startsWith('tests/'));
     return charmcraftFiles.map((charmcraftFile) => {
         const file = path.join(workingDir, path.relative(workingDir, charmcraftFile));
         const charmcraft = yaml.load(fs.readFileSync(charmcraftFile, { encoding: 'utf-8' }));
@@ -89,7 +89,7 @@ async function planBuildDockerImage(workingDir, id, outputType) {
 }
 async function planBuildFileResource(workingDir, id) {
     const allCharmcraftFiles = await (await glob.create(path.join(workingDir, '**', 'charmcraft.yaml'))).glob();
-    const charmcraftFiles = allCharmcraftFiles.filter(file => !path.normalize(path.relative(workingDir, file)).startsWith('tests/'));
+    const charmcraftFiles = allCharmcraftFiles.filter((file) => !path.normalize(path.relative(workingDir, file)).startsWith('tests/'));
     return charmcraftFiles.flatMap((charmcraftFile) => {
         const file = path.join(workingDir, path.relative(workingDir, charmcraftFile));
         const charmcraft = yaml.load(fs.readFileSync(charmcraftFile, { encoding: 'utf-8' }));

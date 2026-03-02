@@ -69,7 +69,10 @@ async function buildCharm(params: BuildCharmParams): Promise<void> {
   fs.writeFileSync(
     manifestFile,
     JSON.stringify(
-      { name: params.plan.name, files: charmFiles.map(f => path.basename(f)) },
+      {
+        name: params.plan.name,
+        files: charmFiles.map((f) => path.basename(f))
+      },
       null,
       2
     )
@@ -104,7 +107,7 @@ async function buildFileResource(plan: BuildPlan): Promise<void> {
   fs.writeFileSync(
     manifestFile,
     JSON.stringify(
-      { name: plan.name, files: resourceFiles.map(f => path.basename(f)) },
+      { name: plan.name, files: resourceFiles.map((f) => path.basename(f)) },
       null,
       2
     )
@@ -273,7 +276,7 @@ async function buildRock({
       JSON.stringify(
         {
           name: plan.name,
-          files: rocks.map(f => path.basename(f))
+          files: rocks.map((f) => path.basename(f))
         },
         null,
         2
@@ -287,7 +290,7 @@ async function buildRock({
   } else {
     const tree = await gitTreeId(plan.source_directory)
     const images = await Promise.all(
-      rocks.map(async f => {
+      rocks.map(async (f) => {
         const base = path
           .basename(f)
           .substring(plan.name.length)

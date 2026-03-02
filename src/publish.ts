@@ -70,10 +70,11 @@ class Publish {
       return [[], []]
     }
     const images = Object.keys(resources).filter(
-      k => resources[k].type === 'oci-image' && !resources[k]['upstream-source']
+      (k) =>
+        resources[k].type === 'oci-image' && !resources[k]['upstream-source']
     )
     const files = Object.keys(resources).filter(
-      k => resources[k].type === 'file'
+      (k) => resources[k].type === 'file'
     )
     return [images, files]
   }
@@ -218,7 +219,7 @@ class Publish {
       }
     }
     if (upload.size != resources.length) {
-      const missing = resources.filter(r => !upload.has(r))
+      const missing = resources.filter((r) => !upload.has(r))
       throw new Error(`can't find required resources: ${missing}`)
     }
     return upload
@@ -234,7 +235,7 @@ class Publish {
       charmDir = path.join(charmDir, 'charm')
     }
     const charms = plan.build.filter(
-      b =>
+      (b) =>
         b.type === 'charm' &&
         normalizePath(b.source_directory) === normalizePath(charmDir)
     )
@@ -243,7 +244,7 @@ class Publish {
     }
     if (charms.length > 1) {
       throw new Error(
-        `more than one charm to upload: ${charms.map(c => c.name)}`
+        `more than one charm to upload: ${charms.map((c) => c.name)}`
       )
     }
     const charm = charms[0]
@@ -276,7 +277,7 @@ class Publish {
     return {
       name: manifest.name as string,
       dir: charm.source_directory,
-      files: (manifest.files as string[]).map(f => path.join(tmp, f))
+      files: (manifest.files as string[]).map((f) => path.join(tmp, f))
     }
   }
 
